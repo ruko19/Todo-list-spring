@@ -1,7 +1,7 @@
 import React from 'react'
 
-const TodoItem = ({ todo }) => {
-    const { title, completed } = todo
+const TodoItem = ({ todo, handleSetComplete, handleDelete }) => {
+    const { id, title, completed } = todo
 
 
     return (
@@ -9,13 +9,14 @@ const TodoItem = ({ todo }) => {
             <div className="flex items-center">
                 {
                     completed ? (
-                        <div className='bg-green-700 p-1 rounded-full cursor-pointer'>
-                            <img className='h-4 w-4' src="/public/check-icon.svg" alt="" />
+                        <div onClick={() => handleSetComplete(id)} className='bg-green-700 p-1 rounded-full cursor-pointer'>
+                            <img className='h-3 w-3' src="/public/check-icon.svg" alt="" />
                         </div>
 
                     ) : (
 
                         <span
+                            onClick={() => handleSetComplete(id)}
                             className='w-5 h-5 border-solid border border-gray-500 rounded-full  cursor-pointer'>
                         </span>
 
@@ -26,7 +27,12 @@ const TodoItem = ({ todo }) => {
                     {title}
                 </p>
             </div>
-            <img className='h-5 w-5 cursor-pointer transition-all duration-300 ease-in' src="/close-icon.svg" alt="" />
+            <img
+                className='h-5 w-5 cursor-pointer transition-all duration-300 ease-in'
+                src="/close-icon.svg"
+                alt=""
+                onClick={() => handleDelete(id)}
+            />
 
 
         </div >
